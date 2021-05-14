@@ -6,10 +6,11 @@ const app = express();
 const urlencoded = require("body-parser/lib/types/urlencoded");
 
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(express.static("public"));
 
 
 app.get("/",(req,res)=>{
-    res.send("<h1>Hello</h1>");
+    res.sendFile(__dirname + "/signup.html");
 })
 
 app.listen(3000,()=>{
