@@ -34,29 +34,36 @@ app.post("/", (req, res) => {
 
   const jsonData = JSON.stringify(data);
 
-  const url = "https://us1.api.mailchimp.com/3.0/lists/9ecb572d45";
+  const url = "https://usX.api.mailchimp.com/3.0/lists/api_key";
 
   const options = {
       method: "POST",
-      auth: "edgucation:c137812ee41c5878dc9525a061ec4496-us1"
+      auth: "username:api_key"
   }
 
   const request = https.request(url,options,(response)=>{
+    const statusCode = response.statusCode
+    if (statusCode === 200){
+        res.sendFile(__dirname + "/success.html")
+    }else{
+        res.sendFile(__dirname + "/failure.html")
+    }
     response.on("data", function(data){
         console.log(JSON.parse(data));
     })
+
   })
   
   request.write(jsonData)
   request.end()
 });
 
+app.get("/failure",function(req,res){
+    res.redirect("/")
+})
+
 app.listen(3000, () => {
   console.log("Server is running on Port 3000.");
 });
 
-// API KEY
-// c137812ee41c5878dc9525a061ec4496-us1
 
-// Audience ID List ID
-// 9ecb572d45
