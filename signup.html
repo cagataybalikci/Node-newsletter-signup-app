@@ -71,7 +71,7 @@
   </head>
   <body class="text-center">
     <main class="form-signin">
-      <form>
+      <form action="/" method="POST">
         <img
           class="mb-4"
           src="https://www.jing.fm/clipimg/detail/31-312785_envelope-png-free-download-envelope-png.png"
@@ -85,6 +85,7 @@
           type="text"
           class="form-control top"
           placeholder="First Name"
+          name="firstName"
           autofocus
           required
         />
@@ -92,12 +93,14 @@
           type="text"
           class="form-control middle"
           placeholder="Last Name"
+          name="lastName"
           required
         />
         <input
           type="email"
           class="form-control bottom"
           placeholder="Email"
+          name="email"
           required
         />
 
